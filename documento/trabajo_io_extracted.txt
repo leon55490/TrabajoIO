@@ -1,0 +1,401 @@
+Modelos   Símbolo  Rango  Descripción  
+i  {1,2,…, I }  Índice  que  representa  las  ubicaciones  potenciales  para  las  Unidades  Móviles  de  Sangre  (BMs)  (Blood  Mobiles).  
+j  {1,2,…, J }  Índice  correspondiente  a  los  Centros  Locales  de  Donación  de  Sangre  (LBDCs)  (Local  Blood  Donation  Centers).  
+r  {1,2,…, R }  Índice  asignado  a  los  Bancos  Regionales  de  Sangre  (RBBs)  (Regional  Blood  Banks),  que  funcionan  como  Centros  de  Procesamiento.  
+h  {1,2,…, H }  Conjunto  que  identifica  a  los  Hospitales  (grandes  instituciones  médicas  con  laboratorios  de  transfusión).  
+k  {1,2,…, K }  Conjunto  que  se  refiere  a  las  Instalaciones  de  Atención  Médica  (Healthcare  Facilities,  como  centros  de  salud  y  clínicas  privadas).  
+u  {1,2,…, U }  Conjunto  que  representa  las  Instalaciones  de  Eliminación  de  Residuos  de  Sangre  (BWDFs)  (Blood  Waste  Disposal  Facilities).  
+p  {1,2,…, P }  Índice  que  especifica  los  tipos  de  glóbulos  rojos  (red  blood  cell  types),  como  los  tipos  A,  B,  AB  y  O  en  el  caso  de  estudio.  
+t  {1,2,…, T }  Conjunto  que  denota  los  períodos  de  tiempo .  
+    
+Los  parametros  Parámetros  de  Demanda,  Capacidad  y  Productos   Símbolo  Descripción  Unidades  y  Fuentes  
+DMt  ph    
+Volumen  de  la  demanda  de  sangre  tipo  p  en  el  hospital  h  durante  el  período  t .  
+Bolsas  
+DMt  pk    
+Volumen  de  la  demanda  de  sangre  tipo  p  en  la  instalación  de  atención  médica  k  durante  el  período  t .  
+Bolsas  
+PAt  pr    
+La  capacidad  de  producción  de  sangre  tipo  p  en  el  Banco  Regional  de  Sangre  (RBB)  r  durante  el  período  t .  
+Bolsas  
+SC  pr    
+Capacidad  de  almacenamiento  de  sangre  tipo  p  en  el  RBB  r .  Bolsas  
+SC  ph    
+Capacidad  de  almacenamiento  de  sangre  tipo  p  en  el  hospital  h .  
+Bolsas  
+SC  pk    
+Capacidad  de  almacenamiento  de  sangre  tipo  p  en  la  instalación  de  atención  médica  k .  
+Bolsas  
+α  Vida  útil  de  los  glóbulos  rojos  (red  blood  cells).  Días  
+          
+Parámetros  Financieros  (Costos  Fijos,  Precios  y  Costos  Operativos)   Símbolo  Descripción  Unidades  y  Fuentes  
+SPtprh    
+Precio  de  venta  de  la  sangre  tipo  p  en  el  RBB  r  vendida  al  hospital  h  durante  el  período  t .  
+IDR/bolsa  
+SPtprk    
+Precio  de  venta  de  la  sangre  tipo  p  en  el  RBB  r  vendida  a  la  instalación  de  atención  médica  k  durante  el  período  t .  
+IDR/bolsa  
+FCi    
+Costo  fijo  por  abrir  una  Unidad  Móvil  de  Sangre  (BM)  en  la  ubicación  i .  
+IDR  
+FCj    
+Costo  fijo  por  abrir  un  Centro  Local  de  Donación  de  Sangre  (LBDC)  en  la  ubicación  j .  
+IDR  
+OCtpr    
+Costo  de  producción  de  sangre  tipo  p  en  el  RBB  r  durante  el  período  t .  
+IDR/bolsa  
+EC  Costo  de  la  emisión  de  carbono .  IDR/kg.CO2e  
+               
+Parámetros  de  Costos  de  Adquisición  (Procurement)   Símbolo  Descripción  Unidades  y  Fuentes  
+PCtpir    
+Costo  de  adquisición  para  la  sangre  tipo  p  de  la  BM  i  para  el  RBB  r  durante  el  período  t .  
+IDR/bolsa  
+PCtpjr    
+Costo  de  adquisición  para  la  sangre  tipo  p  del  LBDC  j  para  el  RBB  r  durante  el  período  t .  
+IDR/bolsa  
+PCtpjh    
+Costo  de  adquisición  para  la  sangre  tipo  p  del  LBDC  j  para  el  hospital  h  durante  el  período  t .  
+IDR/bolsa  
+PCtpjk    
+Costo  de  adquisición  para  la  sangre  tipo  p  del  LBDC  j  para  la  instalación  de  atención  médica  k  durante  el  período  t .  
+IDR/bolsa  
+                      
+Parámetros  de  Costos  de  Inventario  y  Desecho   Símbolo  Descripción  Unidades  y  Fuentes  
+ICtpr    
+Costo  de  inventario  para  la  sangre  tipo  p  almacenada  en  el  RBB  r  durante  el  período  t .  
+IDR/bolsa  
+ICtph    
+Costo  de  inventario  para  la  sangre  tipo  p  almacenada  en  el  hospital  h  durante  el  período  t .  
+IDR/bolsa  
+ICtpk    
+Costo  de  inventario  para  la  sangre  tipo  p  almacenada  en  la  instalación  de  atención  médica  k  durante  el  período  t .  
+IDR/bolsa  
+WCtpr    
+Costo  por  obsolescencia  (outdated  cost)  para  el  desecho  de  sangre  tipo  p  en  el  RBB  r  durante  el  período  t .  
+IDR/bolsa  
+WCtph    
+Costo  por  obsolescencia  para  el  desecho  de  sangre  tipo  p  en  el  hospital  h  durante  el  período  t .  
+IDR/bolsa  
+WCtpk    
+Costo  por  obsolescencia  para  el  desecho  de  sangre  tipo  p  en  la  instalación  de  atención  médica  k  durante  el  período  t .  
+IDR/bolsa  
+              
+Parámetros  de  Costos  de  Logística  (Costo  de  Transporte  por  Unidad/Distancia)   Símbolo  Descripción  Unidades  y  Fuentes  
+XCtpir    
+Costo  logístico  de  sangre  tipo  p  desde  BM  i  hasta  RBB  r  durante  t .  IDR/km/bolsa  
+XCtpjr    
+Costo  logístico  de  sangre  tipo  p  desde  LBDC  j  hasta  RBB  r  durante  t .  
+IDR/km/bolsa  
+XCtpjh    
+Costo  logístico  de  sangre  tipo  p  desde  LBDC  j  hasta  hospital  h  durante  t .  
+IDR/km/bolsa  
+XCtprr ˊ    
+Costo  logístico  de  transbordo  de  sangre  tipo  p  desde  RBB  r  hasta  RBB r ˊ  durante  t .  
+IDR/km/bolsa  
+XCtpru    
+Costo  logístico  de  desecho  de  sangre  tipo  p  desde  RBB  r  hasta  BWDF  u  durante  t .  
+IDR/km/bolsa  
+XCtphu    
+Costo  logístico  de  desecho  de  sangre  tipo  p  desde  hospital  h  hasta  BWDF  u  durante  t .  
+IDR/km/bolsa  
+              
+Parámetros  de  Distancia   Símbolo  Descripción  Unidades  y  Fuentes  
+dir    
+Distancia  desde  BM  i  hasta  RBB  r .  km  
+djr    
+Distancia  desde  LBDC  j  hasta  RBB  r .  km  
+drh    
+Distancia  desde  RBB  r  hasta  hospital  h .  km  
+drr ˊ    
+Distancia  entre  RBB  r  y  RBB r ˊ  (para  transbordo).  
+km  
+dru    
+Distancia  desde  RBB  r  hasta  BWDF  u .  km  
+                        
+Parámetros  de  Emisiones  de  Carbono  (Tasa  de  Emisión  por  Actividad)   Símbolo  Descripción  Unidades  y  Fuentes  
+EPtpr    
+Tasa  de  emisión  de  producción  de  sangre  tipo  p  en  RBB  r  durante  t .  
+kg.CO2e/bolsa  
+EItpr    
+Tasa  de  emisión  de  almacenamiento  de  sangre  tipo  p  en  RBB  r  durante  t .  
+kg.CO2e/bolsa  
+EItph    
+Tasa  de  emisión  de  almacenamiento  de  sangre  tipo  p  en  hospital  h  durante  t .  
+kg.CO2e/bolsa  
+EItpk    
+Tasa  de  emisión  de  almacenamiento  de  sangre  tipo  p  en  instalación  k  durante  t .  
+kg.CO2e/bolsa  
+EXtpir    
+Tasa  de  emisión  de  transporte  de  sangre  tipo  p  desde  BM  i  hasta  RBB  r  durante  t .  
+kg.CO2e/km/bolsa  
+EXtprr ˊ    
+Tasa  de  emisión  de  transbordo  de  sangre  tipo  p  desde  RBB  r  hasta  RBB r ˊ  durante  t .  
+kg.CO2e/km/bolsa  
+CAPt    
+Límite  de  carbono  (Carbon  cap)  para  el  período  t .  kg.CO2e  
+           
+coeficiente  clave  en  las  funciones  objetivo   Símbolo  Descripción  Unidades  y  Fuentes  
+ρ  Coeficiente  de  ponderación  utilizado  para  calcular  la  Tasa  Total  de  Satisfacción,  priorizando  la  demanda  de  hospitales  (TSH)  sobre  la  demanda  de  las  instalaciones  de  atención  médica  (TSK).  
+Coeficiente  (porcentaje)  
+ En  el  caso  de  estudio,  se  estableció  que  ρ=80%                                
+Variables  de  Decisión  (Decision  Variables)   Variables  Continuas  (Flujo,  Producción,  Inventario  y  Desecho)   Símbolo  Descripción  Unidades  
+PRtpr    
+Cantidad  de  sangre  tipo  p  producida  en  el  Banco  Regional  de  Sangre  (RBB)  r  durante  el  período  t .  
+Bolsas  
+IRtpr    
+Nivel  de  inventario  de  sangre  tipo  p  almacenada  en  el  RBB  r  durante  el  período  t .  
+Bolsas  
+IHtph    
+Nivel  de  inventario  de  sangre  tipo  p  almacenada  en  el  hospital  h  durante  el  período  t .  
+Bolsas  
+IHtpk    
+Nivel  de  inventario  de  sangre  tipo  p  almacenada  en  la  instalación  de  atención  médica  k  durante  el  período  t .  
+Bolsas  
+WOtpr    
+Volumen  de  sangre  obsoleta  (outdated  blood)  tipo  p  en  el  RBB  r  durante  el  período  t .  
+Bolsas  
+WOtph    
+Volumen  de  sangre  obsoleta  tipo  p  en  el  hospital  h  durante  el  período  t .  
+Bolsas  
+WOtpk    
+Volumen  de  sangre  obsoleta  tipo  p  en  la  instalación  de  atención  médica  k  durante  el  período  t .  
+Bolsas  
+         
+   Variables  de  Flujo  de  Distribución  (XDt  -  Distribución  y  Transbordo)   Símbolo  Descripción  Unidades  
+XDtpir    
+Volumen  de  sangre  tipo  p  distribuido  desde  la  Unidad  Móvil  de  Sangre  (BM)  i  al  RBB  r  en  el  período  t .  
+Bolsas  
+XDtpjr    
+Volumen  de  sangre  tipo  p  distribuido  desde  el  Centro  Local  de  Donación  de  Sangre  (LBDC)  j  al  RBB  r  durante  el  período  t .  
+Bolsas  
+XDtpjh    
+Volumen  de  sangre  tipo  p  distribuido  desde  el  LBDC  j  al  hospital  h  durante  el  período  t .  
+Bolsas  
+XDtpjk    
+Volumen  de  sangre  tipo  p  distribuido  desde  el  LBDC  j  a  la  instalación  de  atención  médica  k  durante  el  período  t .  
+Bolsas  
+XDtprh    
+Volumen  de  sangre  tipo  p  distribuido  desde  el  RBB  r  al  hospital  h  durante  el  período  t .  
+Bolsas  
+XDtprk    
+Volumen  de  sangre  tipo  p  distribuido  desde  el  RBB  r  a  la  instalación  de  atención  médica  k  durante  el  período  t .  
+Bolsas  
+XDtprr ˊ    
+Volumen  de  transbordo  de  sangre  tipo  p  distribuido  desde  el  RBB  r  a  otro  RBB r ˊ  durante  el  período  t .  
+Bolsas  
+        
+ Variables  de  Flujo  de  Desecho  (XDt  -  Desecho)   Símbolo  Descripción  Unidades  
+XDtpru    
+Volumen  de  desecho  de  sangre  p  enviado  desde  el  RBB  r  a  la  Instalación  de  Eliminación  de  Residuos  de  Sangre  (BWDF)  u  en  el  período  t .  
+Bolsas  
+XDtphu    
+Volumen  de  desecho  de  sangre  p  enviado  desde  el  hospital  h  a  la  BWDF  u  en  el  período  t .  
+Bolsas  
+XDtpku    
+Volumen  de  desecho  de  sangre  tipo  p  enviado  desde  la  instalación  de  atención  médica  k  a  la  BWDF  u  en  el  período  t .  
+Bolsas  
+ Variables  Binarias  (Asignación  y  Operación  de  Instalaciones)  Estas  variables  determinan  la  configuración  de  la  red  en  cada  período  de  tiempo.   Símbolo  Descripción  
+yti    
+Variable  binaria  que  indica  si  la  Unidad  Móvil  de  Sangre  (BM)  i  está  asignada  en  el  período  t ;  es  igual  a  1  si  está  asignada,  y  0  en  caso  contrario.  
+ytj    
+Variable  binaria  que  indica  si  el  Centro  Local  de  Donación  de  Sangre  (LBDC)  j  está  asignado  en  el  período  t ;  es  igual  a  1  si  está  asignado,  y  0  en  caso  contrario.  
+ytr    
+Variable  binaria  que  indica  si  el  Banco  Regional  de  Sangre  (RBB)  r  está  operando  en  el  período  t ;  es  igual  a  1  si  está  operando,  y  0  en  caso  contrario.  
+   
+Función  Objetiva  
+Este  modelo  MILP  para  la  Cadena  de  Suministro  de  Sangre  es  multi-objetivo  y  busca  
+equilibrar
+ 
+tres
+ 
+metas:
+ 
+1.  Maximizar  el  beneficio  total  
+ 2.  Maximizar  la  tasa  de  cumplimiento  del  servicio  
+ 3.  Minimizar  las  emisiones  totales  de  carbono  
+Primer  objetivo:  Maximizar  el  Beneficio  Total  (MaxTP)  
+El  beneficio  se  calcula  como:   
+ 
+Donde:  
+Ingresos  (TR):  
+Suma  de  todas  las  ventas  desde  los  bancos  regionales  (RBB)  a:  
+●  hospitales  (h)  
+ ●  centros  de  salud  (k)  
+ 
+Costos  (TC1  a  TC7):  
+●  TC1:  costos  fijos  de  operación  de  BM  y  LBDC  
+ ●  TC2:  costos  de  adquisición  desde  BM  y  LBDC  
+ ●  TC3:  costo  de  producción  en  los  RBB  
+ ●  TC4:  costo  de  inventario  en  RBB,  hospitales  y  centros  
+ ●  TC5:  costo  por  sangre  vencida  (desperdicio)  
+ 
+
+●  TC6:  costo  de  transporte  y  transbordo  
+ ●  TC7:  costo  por  emisiones  de  carbono  
+ 
+(Todo  expresado  como  sumas  del  tipo  costo  ×  cantidad  ×  distancia  cuando  aplica.)  
+2.  Segundo  objetivo:  Maximizar  el  Nivel  de  Servicio  (MaxTLS)  
+El  servicio  mide  cuánta  demanda  se  satisface.  
+ 
+TSH:  cumplimiento  de  hospitales  
+ 
+TSK:  cumplimiento  de  centros  de  salud  
+ 
+3.  Tercer  objetivo:  Minimizar  las  Emisiones  Totales  (MinTE)  
+ 
+Emisiones  de  producción  (TEP):  
+ 
+ 
+ 
+
+Emisiones  de  almacenamiento  (TES):  
+ 
+Emisiones  del  transporte  (TED):  
+Suma  de  todos  los  flujos  ×  distancia  ×  factor  de  emisión.  
+4.
+ 
+Función
+ 
+objetivo
+ 
+combinada
+ 
+(Weighted
+ 
+Sum
+ 
+Method)
+ 
+Los  tres  objetivos  se  normalizan  y  se  combinan  así:  
+ 
+Donde:  
+●  w1,  w2,  w3son  los  pesos  (suman  1)  
+ ●  ZPro,TLS,  TE  son  valores  iniciales  normalizados  del  caso  base  
+ ●  ZPro ,TLS,TE  son  los  valores  reales  (óptimos)  de  beneficio,  tasa  de  servicio  y  
+emisiones
+ 
+usados
+ 
+para
+ 
+la
+ 
+normalización.
+ 
+Para  el  estudio  real:  
+w1=0.5,     w2=0.3,      w3=0.2  
+ 
+1.  Restricciones  de  Balance  de  Inventario  y  Flujo  
+Garantizan  que  el  flujo  de  sangre  se  conserve  en  toda  la  red.  
+ 
+ 
+
+(1.1)  Balance  en  Bancos  Regionales  (RBB)  
+Para  cada  tipo  p,  banco  r  y  periodo  t:  
+ 
+Interpretación:  
+ 
+Inventario
+ 
+previo
+ 
++
+ 
+sangre
+ 
+recibida
+ 
+=
+ 
+inventario
+ 
+actual
+ 
++
+ 
+sangre
+ 
+enviada
+ 
+a
+ 
+hospitales/centros
+ 
++
+ 
+transbordos.
+ 
+ 
+ Balance  en  Hospitales  
+ 
+Balance  en  Centros  de  Salud  
+ 
+2.  Restricciones  de  Producción  y  Capacidad  
+ Definición  de  la  producción  en  el  RBB  
+ 
+Interpretación:  todo  lo  que  entra  al  banco  equivale  a  lo  producido.  
+ 
+ 
+ 
+ 
+
+Capacidad  máxima  del  RBB  
+ 
+Interpretación:  el  banco  solo  produce  si  está  operativo.  
+3.  Restricciones  de  Capacidad  de  Inventario  
+Inventario  máximo  en  RBB  
+ 
+Inventario  máximo  en  Hospitales  
+ 
+Inventario  máximo  en  Centros  de  Salud   
+ 
+4.  Restricciones  de  Desecho  y  Vida  Útil  (FIFO)  
+Cálculo  del  desecho  en  RBB  
+      
+
+Cálculo  del  desecho  en  Hospitales  
+ 
+Cálculo  del  desecho  en  Centros  
+ 
+FIFO  –  Vida  útil  (α)  
+ 
+Interpretación:  solo  se  desecha  sangre  que  supera  la  vida  útil.  
+ 
+5.  Restricciones  de  Asignación  /  Operación  
+Garantizan  que  las  instalaciones  solo  funcionen  si  están  “activas”.  
+Activación  de  Unidades  Móviles  (BM)  
+ 
+Activación  de  Centros  Locales  (LBDC)  
+ 
+ 
+
+Activación  de  Bancos  Regionales  (RBB)  
+ 
+Interpretación:  cada  instalación  debe  estar  operativa  al  menos  un  periodo.  
+ 
+ 
+6.  Restricción  Ambiental  (Límite  de  Carbono)  
+ 
+Interpretación:  la  cadena  no  puede  emitir  más  carbono  que  el  límite  permitido.  
+7.  Dominio  de  Variables  
+Flujo,  producción,  inventario,  desecho  
+ 
+(7.2)  Variables  binarias  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,114 @@
+Aquí tiene los datos en el formato de lista de verificación solicitado: 
+Categoría Parámetro Valor Específico o Rango (Unidad) Fuente 
+Conjuntos (BMs) 3 Unidades Móviles (BMs)  
+ (LBDCs) 3 Centros Locales de Donación (LBDCs)  
+ (RBBs) 2 Bancos de Sangre Regionales (RBBs)  
+ (Hospitales) 4 Hospitales  
+ (Centros de Salud) 2 Centros de Atención Médica (Healthcare 
+Facilities)  
+ (BWDFs) 2 Instalaciones de Desecho de Residuos 
+de Sangre (BWDFs)  
+ (Tipos de Sangre) 4 Tipos de sangre: A (), B (), AB (), y O ()  
+ (Períodos de tiempo) 45 Períodos de planificación ()  
+Capacidades y 
+Demandas 
+(Demanda 
+Hospitales) Distribución Uniforme bolsas  
+ (Demanda C. Salud) Distribución Uniforme bolsas  
+ 
+(Cap. Producción 
+RBB) Distribución Uniforme bolsas  
+ (Cap. Almac. RBB) 10,000 bolsas  
+ 
+(Cap. Almac. 
+Hospitales) 2,000 bolsas  
+ 
+(Cap. Almac. C. 
+Salud) 2,000 bolsas  
+ (Vida útil) 25 días (para glóbulos rojos)  
+Precios (Precio a Hospitales) Distribución Uniforme IDR/bolsa  
+ (Precio a C. Salud) Distribución Uniforme IDR/bolsa  
+Costos Fijos (Costo Fijo BM) 500,000 IDR  
+ (Costo Fijo LBDC) 750,000 IDR  
+Costos 
+Operacionales (Costo Producción) Distribución Uniforme IDR/bolsa  
+ 
+(Costo Adq. BM a 
+RBB) Distribución Uniforme IDR/bolsa  
+ 
+(Costo Adq. LBDC a 
+RBB) Distribución Uniforme IDR/bolsa  
+ 
+(Costo Adq. LBDC a 
+Hospital) Distribución Uniforme IDR/bolsa  
+ 
+(Costo Adq. LBDC a 
+C. Salud) Distribución Uniforme IDR/bolsa  
+ (Costo Inv. RBB) Distribución Uniforme IDR/bolsa  
+ (Costo Inv. Hospital) Distribución Uniforme IDR/bolsa  
+ (Costo Inv. C. Salud) Distribución Uniforme IDR/bolsa  
+ (Costo Obsol. RBB) Distribución Uniforme IDR/bolsa  
+ (Costo Obsol. 
+Hospital) Distribución Uniforme IDR/bolsa  
+ 
+(Costo Obsol. C. 
+Salud) Distribución Uniforme IDR/bolsa  
+Costos Logísticos 
+() ,  Distribución Uniforme IDR/km/bolsa  
+ , , , ,  Distribución Uniforme IDR/km/bolsa  
+ , , (A BWDF) Distribución Uniforme IDR/km/bolsa  
+Distancias () (BM a RBB) Rangos desde 7 km hasta 20 km (Ejemplo: 
+Mobile 1 a Balikpapan es 7 km)  
+ (LBDC a RBB) Rangos desde 3 km hasta 20 km (Ejemplo: 
+Blood Center 3 a Penajam es 3 km)  
+ , (RBB a Demanda) 
+Rangos desde 0.5 km hasta 30 km 
+(Ejemplo: Balikpapan a RS. Hermina es 10 
+km) 
+ 
+ (Transbordo RBB-RBB) Distancia fija de 18 km  
+ , , (A BWDF) 
+Rangos desde 1.5 km hasta 32 km 
+(Ejemplo: RBB Balikpapan a BWDF es 2 
+km) 
+ 
+Emisiones (Tasas) (Tasa Emisión 
+Producción) Distribución Uniforme kg. CO2e/bolsa  
+ 
+, , (Tasa Emisión 
+Almacenamiento) Distribución Uniforme kg. CO2e/bolsa  
+ 
+, etc. (Tasa Emisión 
+Transporte) 
+Distribución Uniforme kg. 
+CO2e/km/bolsa (Esta tasa se aplica a la 
+mayoría de los flujos de transporte: , , , , 
+etc.) 
+ 
+Restricción 
+Ambiental (Límite de Carbono) 1000 kg. CO2e  
+ 
+(Costo de Emisión de 
+Carbono) 250,000 IDR/kg. CO2e  
+Pesos (Weighted 
+Sum Method) (Beneficio Total) 0.5  
+ 
+(Tasa de 
+Cumplimiento) 0.3  
+ 
+(Emisiones de 
+Carbono) 0.2  
+ 
+Nota sobre la nomenclatura: 
+La fuente principal documenta la formulación matemática y los parámetros 
+correspondientes, y la Tabla 3 proporciona los valores numéricos o rangos de distribución 
+uniforme () utilizados en el estudio de caso. 
+La función objetivo combinada (Weighted Sum Method) maximiza una función que pondera el 
+beneficio (), la satisfacción () y minimiza las emisiones (). Estos pesos fueron seleccionados 
+basándose en el juicio de expertos para lograr un equilibrio entre los resultados financieros, 
+la fiabilidad del servicio y la sostenibilidad ambiental. 
+El modelo busca: 
+1. Maximizar el Beneficio Total (). 
+2. Maximizar la Tasa de Cumplimiento del Servicio (). 
+3. Minimizar las Emisiones Totales (). 
+ 
