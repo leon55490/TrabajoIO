@@ -1,11 +1,3 @@
-# ============================================================
-# MODELO BSC - NORMALIZACIÓN CORREGIDA (MÉTODO DE DOS FASES)
-# ============================================================
-# CORRECCIONES IMPLEMENTADAS:
-# 1. Método de dos fases: resolver cada objetivo individualmente primero
-# 2. Usar valores reales de normalización (no estimados)
-# 3. Agregar TC2 (costos de adquisición)
-# 4. Corregir cálculo de cumplimiento (no permitir >100% sin penalización)
 
 import subprocess
 import sys
