@@ -149,13 +149,6 @@ def central_float(a, b, ndigits=4):
     """
     return round((a + b) / 2, ndigits)
 
-# ===========================
-# DEFINICIÓN DE PARÁMETROS DEL MODELO
-# ===========================
-# Esta sección define todos los parámetros necesarios para el modelo de optimización
-# Se utilizan valores centrales de rangos para replicar el caso de estudio de manera determinística
-print("📊 Generando parámetros con VALORES CENTRALES (no aleatorios)...")
-print("   ⚠️  Usando valores promedio de rangos para replicar caso de estudio")
 
 # ----------------------------
 # PARÁMETROS DE DEMANDA Y CAPACIDAD
@@ -757,18 +750,6 @@ def crear_modelo_base():
     # Retornar el modelo completo con todas las variables y restricciones
     return m
 
-# ===========================
-# NORMALIZACIÓN MANUAL CON VALORES DEL DOCUMENTO
-# ===========================
-# Esta sección configura los valores de normalización para la función objetivo multi-criterio
-# Los valores se toman directamente del caso de estudio en lugar de calcularlos
-
-print("\n" + "="*70)
-print("CONFIGURANDO NORMALIZACIÓN CON VALORES DE REFERENCIA DEL DOCUMENTO")
-print("="*70)
-print("CRÍTICO: Usando valores fijos del caso de estudio en lugar de calcularlos")
-print("Razón: El método de dos fases genera valores extremos que desestabilizan Z\n")
-
 # ----------------------------
 # VALORES DE NORMALIZACIÓN FIJOS
 # ----------------------------
@@ -789,23 +770,13 @@ T_LS_ref = 1.3185  # Cumplimiento promedio: (109.13% + 154.57%) / 2 ≈ 131.85%
 # Valor objetivo: 203.94 kg de CO2 equivalente
 T_E_ref = 203.94  # Emisiones óptimas: 203.94 kg CO2e
 
-# Mostrar los valores configurados
-print(f"✓ Valores de normalización configurados:")
-print(f"   Z_Pro_ref (Beneficio):      IDR {Z_Pro_ref:,.2f} (del documento)")
-print(f"   T_LS_ref (Cumplimiento):    {T_LS_ref:.4f} (del documento)")
-print(f"   T_E_ref (Emisiones):        {T_E_ref:.2f} kg CO2e (del documento)")
-print(f"\n⚠️  Estos valores estabilizan la función objetivo combinada")
-print(f"   evitando el colapso operacional causado por valores extremos\n")
-
 # Configurar el solver GLPK con ruta al ejecutable
 solver = SolverFactory('glpk', executable='/usr/bin/glpsol')
 
 # ===========================
 # RESOLVER MODELO MULTI-OBJETIVO CON NORMALIZACIÓN MANUAL
 # ===========================
-print("\n" + "="*70)
-print("RESOLVIENDO MODELO MULTI-OBJETIVO CON NORMALIZACIÓN MANUAL")
-print("="*70)
+
 
 modelo_final = crear_modelo_base()
 
@@ -860,7 +831,7 @@ def objetivo_combinado_corregido(m):
     demanda_total_h = sum(DM_h[t, p, h] for t in T for p in P for h in H)
     demanda_total_k = sum(DM_k[t, p, k] for t in T for p in P for k in K)
     
-    # CORREGIDO: Sumar flujos por separado
+    # Sumar flujos por separado
     suministro_h = (sum(m.XD_jh[t, p, j, h] for t in T for p in P for j in J for h in H) +
                     sum(m.XD_rh[t, p, r, h] for t in T for p in P for r in R for h in H))
     suministro_k = (sum(m.XD_jk[t, p, j, k] for t in T for p in P for j in J for k in K) +
@@ -881,10 +852,6 @@ def objetivo_combinado_corregido(m):
     return Z_combinado
 
 modelo_final.objetivo = Objective(rule=objetivo_combinado_corregido, sense=maximize)
-
-print("\n⏳ Optimizando modelo multi-objetivo...")
-print(f"   Pesos: w1={W1}, w2={W2}, w3={W3}")
-print(f"   Normalización: Z_Pro={Z_Pro_ref/1e9:.2f}B, T_LS={T_LS_ref:.4f}, T_E={T_E_ref:.2f}\n")
 
 solucion_final = solver.solve(modelo_final, tee=True)
 
@@ -938,13 +905,13 @@ if solucion_final.solver.termination_condition == TerminationCondition.optimal:
     beneficio_total = revenue - (TC1 + TC2 + TC3 + TC4 + TC5 + TC6 + TC7)
     
     demanda_total_h = sum(DM_h[t, p, h] for t in T for p in P for h in H)
-    # CORREGIDO: Sumar flujos por separado
+    #  Sumar flujos por separado
     suministro_h = (sum(value(modelo_final.XD_jh[t, p, j, h]) for t in T for p in P for j in J for h in H) +
                     sum(value(modelo_final.XD_rh[t, p, r, h]) for t in T for p in P for r in R for h in H))
     TSH = (suministro_h / demanda_total_h * 100) if demanda_total_h > 0 else 100.0
     
     demanda_total_k = sum(DM_k[t, p, k] for t in T for p in P for k in K)
-    # CORREGIDO: Sumar flujos por separado
+    #  Sumar flujos por separado
     suministro_k = (sum(value(modelo_final.XD_jk[t, p, j, k]) for t in T for p in P for j in J for k in K) +
                     sum(value(modelo_final.XD_rk[t, p, r, k]) for t in T for p in P for r in R for k in K))
     TSK = (suministro_k / demanda_total_k * 100) if demanda_total_k > 0 else 100.0
