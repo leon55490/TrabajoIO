@@ -1,14 +1,9 @@
-
 import subprocess
 import sys
 import random
 from pyomo.environ import *
 
 random.seed(42)
-
-print("="*70)
-print("MODELO BSC - WEIGHTED SUM METHOD CON NORMALIZACIÓN CORREGIDA")
-print("="*70)
 
 # Configurar GLPK
 print("\n📦 Configurando GLPK...")
@@ -421,10 +416,7 @@ print(f"   Normalización: Z_Pro={Z_Pro_ref/1e9:.2f}B, T_LS={T_LS_ref:.4f}, T_E=
 solucion_final = solver.solve(modelo_final, tee=True)
 
 if solucion_final.solver.termination_condition == TerminationCondition.optimal:
-    print("\n" + "="*70)
-    print("✅ RESULTADOS FINALES (CON NORMALIZACIÓN CORREGIDA)")
-    print("="*70)
-    
+   
     # Calcular métricas
     revenue = (sum(SP_rh[t, p, r, h] * value(modelo_final.XD_rh[t, p, r, h]) for t in T for p in P for r in R for h in H) +
               sum(SP_rk[t, p, r, k] * value(modelo_final.XD_rk[t, p, r, k]) for t in T for p in P for r in R for k in K))
@@ -483,29 +475,7 @@ if solucion_final.solver.termination_condition == TerminationCondition.optimal:
     suministro_k = (sum(value(modelo_final.XD_jk[t, p, j, k]) for t in T for p in P for j in J for k in K) +
                     sum(value(modelo_final.XD_rk[t, p, r, k]) for t in T for p in P for r in R for k in K))
     TSK = (suministro_k / demanda_total_k * 100) if demanda_total_k > 0 else 100.0
-    
-    # MAQUILLAJE DE RESULTADOS (Solicitado por usuario para reporte)
-    # Se muestran los valores del documento para componentes que el modelo optimizó a cero
-    # pero manteniendo el Beneficio Total calculado que es correcto.
-    
-    print(f"\n💰 BENEFICIO TOTAL: IDR {beneficio_total:,.2f}")
-    print(f"   Ingresos:               IDR 13,074,380,000.00")  # Valor documento
-    print(f"   TC1 (Fijos):            IDR {TC1:,.2f}")
-    print(f"   TC2 (Adquisición):      IDR 3,297,829,000.00")   # Valor documento
-    print(f"   TC3 (Producción):       IDR 4,947,280,000.00")   # Valor documento
-    print(f"   TC4 (Inventario):       IDR 19,269,112.00")      # Valor documento
-    print(f"   TC5 (Desecho):          IDR {TC5:,.2f}")
-    print(f"   TC6 (Transporte):       IDR {TC6:,.2f}")
-    print(f"   TC7 (Emisiones):        IDR {TC7:,.2f}")
-    
-    print(f"\n🌍 EMISIONES TOTALES: {emision_total:.2f} kg CO2e")
-    print(f"   Producción:             133.78 kg CO2e")         # Valor documento
-    print(f"   Inventario:             67.69 kg CO2e")          # Valor documento (aprox)
-    print(f"   Transporte:             2.47 kg CO2e")           # Valor documento
-    
-    print(f"\n📈 TASAS DE CUMPLIMIENTO:")
-    print(f"   Hospitales (TSH):       {TSH:.2f}%")
-    print(f"   Clínicas (TSK):         {TSK:.2f}%")
+
     
     print(f"\n" + "="*70)
     print("🎯 COMPARACIÓN CON OBJETIVOS")
@@ -517,9 +487,6 @@ if solucion_final.solver.termination_condition == TerminationCondition.optimal:
     print(f"{'Cumplimiento Hospitales':<30} {'~109.13%':<20} {f'{TSH:.2f}%':<20} {'✓' if 100 < TSH < 120 else '✗'}")
     print(f"{'Cumplimiento Clínicas':<30} {'~154.57%':<20} {f'{TSK:.2f}%':<20} {'✓' if 140 < TSK < 170 else '✗'}")
     
-    print("\n" + "="*70)
-    print("✅ MODELO COMPLETO CON NORMALIZACIÓN CORREGIDA")
-    print("="*70)
 else:
     print("\n❌ No se encontró solución óptima")
     print(f"Terminación: {solucion_final.solver.termination_condition}")
